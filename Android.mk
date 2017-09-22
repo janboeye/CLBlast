@@ -110,6 +110,36 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
 
 include $(BUILD_SHARED_LIBRARY)
 
+include $(CLEAR_VARS)
+
+LOCAL_C_INCLUDES :=  \
+	$(OPENCL_HEADER_PATH) \
+	$(LOCAL_PATH)/include \
+	$(LOCAL_PATH)/src
+
+LOCAL_CFLAGS := \
+	-Wno-unused-parameter -std=c++11 -O2 -Wall -Wno-comment -Wno-return-type -Wno-switch -Wno-missing-noreturn
+
+LOCAL_NDK_STL_VARIANT := gnustl_static
+
+LOCAL_RTTI_FLAG := -frtti -fexceptions
+
+LOCAL_SRC_FILES :=  \
+     samples/sgemm.cpp
+
+LOCAL_SHARED_LIBRARIES :=  \
+	libOpenCL \
+	libclbast
+
+LOCAL_MODULE := clblast_sample_sgemm
+
+LOCAL_MODULE_TAGS := eng optional tests
+
+# Mark source files as dependent on Android.mk
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
+
+
+include $(BUILD_EXECUTABLE)
 
 #-----------------
 # libOpenCL (stub)
