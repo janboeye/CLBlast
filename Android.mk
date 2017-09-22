@@ -100,7 +100,7 @@ LOCAL_SRC_FILES :=  \
 LOCAL_SHARED_LIBRARIES :=  \
 	libOpenCL
 
-LOCAL_MODULE := libclbast
+LOCAL_MODULE := libclblast
 
 LOCAL_MODULE_TAGS := eng optional tests
 
@@ -129,7 +129,7 @@ LOCAL_SRC_FILES :=  \
 
 LOCAL_SHARED_LIBRARIES :=  \
 	libOpenCL \
-	libclbast
+	libclblast
 
 LOCAL_MODULE := clblast_sample_sgemm
 
