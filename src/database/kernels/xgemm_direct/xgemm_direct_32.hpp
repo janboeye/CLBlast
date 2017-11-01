@@ -92,6 +92,14 @@ const DatabaseEntry XgemmDirectSingle = {
         } },
       }
     },
+    { // ARM GPUs
+      kDeviceTypeGPU, "ARM", {
+        { "default", {
+          { Name{"Mali-G71                                          "}, Params{ 8, 8, 8, 8, 8, 0, 0, 1, 1, 8, 0, 0, 0, 8 } },
+          { kDeviceNameDefault                                        , Params{ 8, 8, 8, 8, 8, 0, 0, 1, 1, 8, 0, 0, 0, 8 } },
+        } },
+      }
+    },
     { // Default
       kDeviceTypeAll, "default", {
         { "default", {
