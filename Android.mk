@@ -21,9 +21,6 @@ OPENCL_HEADER_PATH := $(LOCAL_PATH)/../vendor/pinecone/arm/gles/khronos/original
 OPENCL_STUB_PATH := ../vendor/pinecone/arm/gles/cl/tests/sdk
 
 
-#-----------------
-# mali_cl_simple_opencl_example
-
 include $(CLEAR_VARS)
 
 LOCAL_C_INCLUDES :=  \
@@ -132,6 +129,39 @@ LOCAL_SHARED_LIBRARIES :=  \
 	libclblast
 
 LOCAL_MODULE := clblast_sample_sgemm
+
+LOCAL_MODULE_TAGS := eng optional tests
+
+# Mark source files as dependent on Android.mk
+LOCAL_ADDITIONAL_DEPENDENCIES := $(LOCAL_PATH)/Android.mk
+
+
+include $(BUILD_EXECUTABLE)
+
+include $(CLEAR_VARS)
+
+LOCAL_C_INCLUDES :=  \
+	$(OPENCL_HEADER_PATH) \
+	$(LOCAL_PATH)/../CLTune/include \
+	$(LOCAL_PATH)/include \
+	$(LOCAL_PATH)/src
+
+LOCAL_CFLAGS := \
+	-Wno-unused-parameter -std=c++11 -O2 -Wall -Wno-comment -Wno-return-type -Wno-switch -Wno-missing-noreturn
+
+LOCAL_NDK_STL_VARIANT := gnustl_static
+
+LOCAL_RTTI_FLAG := -frtti -fexceptions
+
+LOCAL_SRC_FILES :=  \
+    src/tuning/kernels/xgemm.cpp
+
+LOCAL_SHARED_LIBRARIES :=  \
+	libOpenCL \
+	libcltune \
+	libclblast
+
+LOCAL_MODULE := clblast_tuner_xgemm
 
 LOCAL_MODULE_TAGS := eng optional tests
 
